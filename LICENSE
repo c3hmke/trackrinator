@@ -1,0 +1,11 @@
+{
+    "name":         "Creative Commons Attribution-NonCommercial-ShareAlike (CC-BY-NC-SA)",
+    "description":  "A creative commons license that bans commercial use and requires you to release any modified works under this license.",
+    "key":          "cc-by-nc-sa",
+    "author":       "C Ehmke (github.com/c3hmke)",
+    "priority":     1,
+    "available":    true,
+    "url":          "http://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "categories":   [ "public", "data", "by", "nc", "sa" ],
+    "labels":       [ "public", "cc", "by", "nc", "sa" ]
+}
