@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home/home_view.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
+import 'screens/home/home_view.dart';
+import 'screens/settings/settings_controller.dart';
+import 'screens/settings/settings_view.dart';
 
 class App extends StatelessWidget
 {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/src/app.dart';
-import 'package:trackrinator/src/settings/settings_controller.dart';
-import 'package:trackrinator/src/settings/settings_service.dart';
+import 'package:trackrinator/src/screens/settings/settings_controller.dart';
+import 'package:trackrinator/src/screens/settings/settings_service.dart';
 
 void main() async
 {
