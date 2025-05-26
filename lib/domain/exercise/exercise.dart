@@ -10,10 +10,14 @@ class Exercise {
   final int sets;
   final int reps;
 
-  Exercise({
-    required this.id,
-    required this.name,
-    required this.sets,
-    required this.reps,
-  });
+  // Private constructor to enforce using the factory
+  Exercise._({ required this.id, required this.name, required this.sets, required this.reps });
+
+  // Factory methods
+  factory Exercise.create({required String name, required int sets, required int reps,}) {
+    return Exercise._(id: Id(), name: name, sets: sets, reps: reps);
+  }
+  factory Exercise.fromPrimitives({required String id, required String name, required int sets, required int reps}) {
+    return Exercise._(id: Id.fromString(id), name: name, sets: sets, reps: reps);
+  }
 }
