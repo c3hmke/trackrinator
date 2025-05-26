@@ -15,4 +15,8 @@ class Id {
 
   @override
   int get hashCode => value.hashCode;
+
+  @override
+  String toString() => value;   // simply return the value if cast to string (enables '${object.id}' usage)
+  String call() => value;       // when calling the class return the value (object.id() returns the id)
 }
