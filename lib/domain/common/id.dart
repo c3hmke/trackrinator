@@ -4,7 +4,7 @@ import 'package:nanoid2/nanoid2.dart';
 class Id {
   final String value;
 
-  Id() : value = nanoid();
+  Id() : value = nanoid(length: 8, alphabet: Alphabet.hexadecimalUppercase);
 
   Id.fromString(this.value);
 
