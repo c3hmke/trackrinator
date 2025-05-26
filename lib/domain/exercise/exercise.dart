@@ -1,4 +1,4 @@
-import 'exercise_id.dart';
+import 'package:trackrinator/domain/common/id.dart';
 
 /// Represents the core Exercise entity of the application.
 ///

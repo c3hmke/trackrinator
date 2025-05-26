@@ -1,4 +1,4 @@
-import 'package:nanoid/nanoid.dart';
+import 'package:nanoid2/nanoid2.dart';
 
 /// Wrapper for NanoIds so that they can treated as a type in the application.
 class Id {
