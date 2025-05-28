@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nanoid2/nanoid2.dart';
 import 'package:trackrinator/domain/exercise/exercise.dart';
 import 'package:trackrinator/infrastructure/repositories/exercise_repository.dart';
 
-import 'domain/common/id.dart' show Id;
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -48,25 +46,28 @@ class ExerciseListScreen extends StatefulWidget {
 
 class _ExerciseListScreenState extends State<ExerciseListScreen> {
   final _repository = ExerciseRepository();
+
   List<Exercise> _exercises = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _seedAndLoad();
+    _load();
   }
 
-  Future<void> _seedAndLoad() async {
-    await _repository.addExercise(Exercise.create(name: "Push Ups", sets: 3, reps: 15));
-    await _repository.addExercise(Exercise.create(name: "Squats", sets: 4, reps: 20));
-    await _repository.addExercise(Exercise.create(name: "Plank", sets: 3, reps: 60));
-
-    final all = await _repository.getAllExercises();
-    setState(() => _exercises = all);
+  Future<void> _load() async {
+    final exercises = await _repository.getAllExercises();
+    setState(() {
+      _isLoading = false;
+      _exercises = exercises;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) return Center(child: CircularProgressIndicator());
+
     return Scaffold(
       appBar: AppBar(title: const Text('Exercises')),
       body: ListView.builder(
@@ -192,7 +193,3 @@ class _AddExerciseFormState extends State<AddExerciseForm> {
     );
   }
 }
-
-
-
-
