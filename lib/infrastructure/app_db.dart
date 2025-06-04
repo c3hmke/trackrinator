@@ -9,7 +9,6 @@ class AppDatabase {
       (_db != null) ? _db! : await _init();
 
   static Future<Database> _init() async {
-    print('Init db');
     final dir = await getApplicationDocumentsDirectory();
     final path = join(dir.path, 'trackrinator.db');
 

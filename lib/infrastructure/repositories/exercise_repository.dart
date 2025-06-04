@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:trackrinator/domain/common/id.dart';
 import 'package:trackrinator/domain/exercise/exercise.dart';
 import 'package:trackrinator/domain/exercise/i_exercise_repository.dart';
 import 'package:trackrinator/infrastructure/app_db.dart';
@@ -15,7 +14,7 @@ class ExerciseRepository implements IExerciseRepository {
     await db.insert(
       'exercises',
       {
-        'id': exercise.id(),
+        'id': exercise.id,
         'name': exercise.name,
         'sets': exercise.sets,
         'reps': exercise.reps,
@@ -36,20 +35,20 @@ class ExerciseRepository implements IExerciseRepository {
         'reps': exercise.reps,
       },
       where: 'id = ?',
-      whereArgs: [exercise.id()]
+      whereArgs: [exercise.id]
     );
   }
 
   @override
-  Future<void> deleteExercise(Id id) async {
+  Future<void> deleteExercise(String id) async {
     final db = await AppDatabase.instance;
-    await db.delete('exercises', where: 'id = ?', whereArgs: [id.value]);
+    await db.delete('exercises', where: 'id = ?', whereArgs: [id]);
   }
 
   @override
-  Future<Exercise?> getExerciseById(Id id) async {
+  Future<Exercise?> getExerciseById(String id) async {
     final db = await AppDatabase.instance;
-    final rows = await db.query('exercises', where: 'id = ?', whereArgs: [id.value]);
+    final rows = await db.query('exercises', where: 'id = ?', whereArgs: [id]);
 
     if (rows.isEmpty) return null;
 
