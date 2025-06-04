@@ -5,8 +5,6 @@ import 'package:trackrinator/infrastructure/app_db.dart';
 
 /// Repository for managing data for Exercises
 class ExerciseRepository implements IExerciseRepository {
-  // TESTING: In-memory store (replace with DB later)
-  //final Map<String, Exercise> _store = {};
   @override
   Future<void> addExercise(Exercise exercise) async {
     final db = await AppDatabase.instance;

@@ -6,22 +6,17 @@ class Workout {
   final String name;
   final List<Exercise> exercises;
 
-  // Private constructor to enforce using the factory
-  Workout._({
-    required this.id,
-    required this.name,
-    required this.exercises,
-  });
+  Workout._({ required this.id, required this.name, required this.exercises });
 
-  // Factory methods
+  ///   FACTORY METHODS   ///
   factory Workout.create({
     required String name,
-    required List<Exercise> exercises,
+    List<Exercise>? exercises,
   }) {
     return Workout._(
       id: NanoId.generate(),
       name: name,
-      exercises: exercises
+      exercises: exercises ?? []
     );
   }
 
@@ -29,9 +24,17 @@ class Workout {
     return Workout._(
       id: map['id'] as String,
       name: map['name'] as String,
-      exercises: (map['exercises'] as List<dynamic>)
+      exercises: (map['exercises'] as List<dynamic>? ?? [])
           .map((e) => Exercise.fromMap(Map<String, dynamic>.from(e)))
           .toList(),
+    );
+  }
+
+  factory Workout.fromPrimitives({required String id, required String name, required List<Exercise>? exercises}) {
+    return Workout._(
+      id: id,
+      name: name,
+      exercises: exercises ?? [],
     );
   }
 
@@ -42,4 +45,8 @@ class Workout {
       'exercises': exercises.map((e) => e.toMap()).toList(),
     };
   }
+
+  ///   DOMAIN METHODS   ///
+  void addExercise(Exercise exercise) => exercises.add(exercise);
+  void removeExercise(String id) => exercises.removeWhere((e) => e.id == id);
 }

@@ -10,10 +10,9 @@ class Exercise {
   final int sets;
   final int reps;
 
-  // Private constructor to enforce using the factory
   Exercise._({ required this.id, required this.name, required this.sets, required this.reps });
 
-  // Factory methods
+  ///   DOMAIN METHODS   ///
   factory Exercise.create({required String name, required int sets, required int reps,}) {
     return Exercise._(
         id: NanoId.generate(),
