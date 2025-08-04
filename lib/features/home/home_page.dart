@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:trackrinator/widgets/header.dart';
 import 'workout_card.dart';
 
@@ -38,12 +39,9 @@ class HomePage extends StatelessWidget {
       appBar: const Header(title: '5x5 Workout Trackrinator'),
       body: ListView(
         children: workouts.map((w) {
-          final DateTime date = w['date'];
-          final String formattedDate = '${date.month.toString().padLeft(2, '0')} / ${date.day.toString().padLeft(2, '0')}';
-
           return WorkoutCard(
             title: w['title'],
-            lastCompletedDate: formattedDate,
+            lastCompletedDate: DateFormat('MMM dd').format(w['date']),
             exercises: (w['exercises'] as List)
                 .map((e) => {
                   'name': e['name'].toString(),
