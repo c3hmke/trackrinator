@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:trackrinator/app/theme.dart';
+import 'package:trackrinator/models/workout.dart';
 
 class WorkoutCard extends StatelessWidget {
-  final String title;
-  final String lastCompletedDate;
-  final List<Map<String, dynamic>> exercises;
+  final Workout workout;
 
-  const WorkoutCard({
-    required this.title,
-    required this.lastCompletedDate,
-    required this.exercises,
-    super.key
-  });
+  const WorkoutCard({ required this.workout, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +22,7 @@ class WorkoutCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title, style: AppTheme.text.header),
+                Text(workout.title, style: AppTheme.text.header),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
@@ -35,7 +30,7 @@ class WorkoutCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)
                   ),
                   child: Text(
-                      lastCompletedDate,
+                      DateFormat('MMM dd').format(workout.lastCompletedAt),
                       style: const TextStyle(color: Colors.white, fontSize: 14)
                   )
                 )
@@ -45,16 +40,16 @@ class WorkoutCard extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Exercise Rows
-            ...exercises.map((e) =>
-                Padding(padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(e['name']!, style: AppTheme.text.body),
-                      Text('${e['weight']!} kg', style: AppTheme.text.body)
-                    ],
-                  )
+            ...workout.exercises.map((e) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(e.name, style: AppTheme.text.body),
+                    Text('${e.weight} kg', style: AppTheme.text.body)
+                  ],
                 )
+              )
             ),
 
           ],
