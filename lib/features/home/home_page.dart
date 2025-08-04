@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
     workouts.sort((a, b) => b.lastCompletedAt.compareTo(a.lastCompletedAt));
 
     return Scaffold(
-      appBar: const Header(title: '5x5 Workout Trackrinator'),
+      appBar: const Header(title: '🏋 5x5 Trackrinator 🏋'),
       body: ListView(
         padding: const EdgeInsets.only(top: 16),
         children: [
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
           // Highlighted first card
           Container(
             decoration: BoxDecoration(
-              boxShadow: [BoxShadow(color: AppTheme.colors.secondary)]
+              boxShadow: [BoxShadow(color: AppTheme.colors.accent)]
             ),
             child: WorkoutCard(workout: workouts.first)
           ),
@@ -63,7 +63,14 @@ class HomePage extends StatelessWidget {
           // Remaining exercises
           ...workouts.skip(1).map((w) => WorkoutCard(workout: w)).toList(),
         ]
-      )
+      ),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => print('yay'),
+        label: Text('Start Next Workout', style: AppTheme.text.titleBar,),
+        backgroundColor: AppTheme.colors.primary,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
