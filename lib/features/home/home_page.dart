@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:trackrinator/widgets/header.dart';
 import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/workout.dart';
+import 'package:trackrinator/models/exercise.dart';
 import 'workout_card.dart';
 
 class HomePage extends StatelessWidget {
-  final List<String> items = ['Card 1', 'Card 2'];
-
   // dummy data for dev
   final workouts = [
     Workout(
@@ -33,7 +32,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // sort the workouts so the one which should be done next is on top
     workouts.sort((a, b) => b.lastCompletedAt.compareTo(a.lastCompletedAt));
 
@@ -60,7 +58,7 @@ class HomePage extends StatelessWidget {
           // Spacer
           const SizedBox(height: 24),
 
-          // Remaining exercises
+          // Remaining workouts
           ...workouts.skip(1).map((w) => WorkoutCard(workout: w)).toList(),
         ]
       ),
