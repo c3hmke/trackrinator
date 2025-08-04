@@ -4,7 +4,7 @@ import 'package:trackrinator/app/theme.dart';
 class WorkoutCard extends StatelessWidget {
   final String title;
   final String lastCompletedDate;
-  final List<Map<String, String>> exercises;
+  final List<Map<String, dynamic>> exercises;
 
   const WorkoutCard({
     required this.title,
@@ -51,7 +51,7 @@ class WorkoutCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(e['name']!, style: AppTheme.text.body),
-                      Text('${e['weight']} kg', style: AppTheme.text.body)
+                      Text('${e['weight']!} kg', style: AppTheme.text.body)
                     ],
                   )
                 )
