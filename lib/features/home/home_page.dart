@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/widgets/header.dart';
+import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/workout.dart';
 import 'workout_card.dart';
 
@@ -39,7 +40,29 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const Header(title: '5x5 Workout Trackrinator'),
       body: ListView(
-        children: workouts.map((w) => WorkoutCard(workout: w)).toList(),
+        padding: const EdgeInsets.only(top: 16),
+        children: [
+
+          // Up Next Label
+          const Padding (
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            child: Text('Up Next', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+          ),
+
+          // Highlighted first card
+          Container(
+            decoration: BoxDecoration(
+              boxShadow: [BoxShadow(color: AppTheme.colors.secondary)]
+            ),
+            child: WorkoutCard(workout: workouts.first)
+          ),
+
+          // Spacer
+          const SizedBox(height: 24),
+
+          // Remaining exercises
+          ...workouts.skip(1).map((w) => WorkoutCard(workout: w)).toList(),
+        ]
       )
     );
   }
