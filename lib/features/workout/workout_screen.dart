@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/widgets/exercise_row.dart';
 import 'package:trackrinator/widgets/header.dart';
-import 'package:trackrinator/widgets/exercise_row.dart';
 import 'package:trackrinator/models/workout.dart';
 
 class WorkoutScreen extends StatelessWidget {
@@ -15,31 +14,34 @@ class WorkoutScreen extends StatelessWidget {
 
       appBar: const Header(title: '🏋 5x5 Trackrinator 🏋'),
 
-      body: ListView.separated(
+      body: Padding(
         padding: const EdgeInsets.all(16),
-        separatorBuilder: (_, __) => const Divider(),
-        itemCount: workout.exercises.length + 1,
-        itemBuilder: (context, index) {
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-          // Workout Title Row
-          if (index == 0) {
-            return Column(
-              children: [
-                Center(
-                    child: Text(
-                        workout.title,
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)
-                    )
+            // Title Row
+            Center(child: Text(
+              workout.title,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            )),
+            const SizedBox(height: 16),
+
+            // The Exercises
+            Expanded(
+              child: ListView.separated(
+                separatorBuilder: (_, __) => const Divider(
+                  thickness: 1,
+                  color: Colors.grey,
                 ),
-                const SizedBox(height: 16)
-              ]
-            );
-          }
-
-          // Exercise Rows
-          return ExerciseRow(exercise: workout.exercises[index - 1]);
-        },
-      ),
+                itemCount: workout.exercises.length,
+                itemBuilder: (context, index) =>
+                    ExerciseRow(exercise: workout.exercises[index]),
+              ),
+            )
+          ],
+        ),
+      )
 
     );
   }
