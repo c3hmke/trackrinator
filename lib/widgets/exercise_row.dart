@@ -3,21 +3,29 @@ import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/exercise.dart';
 import 'package:trackrinator/components/pill.dart';
 
-class ExerciseRow extends StatelessWidget {
+class ExerciseRow extends StatefulWidget {
   final Exercise exercise;
 
   const ExerciseRow({Key? key, required this.exercise}) : super(key: key);
 
+  @override
+  State<ExerciseRow> createState() => _ExerciseRowState();
+}
+
+class _ExerciseRowState extends State<ExerciseRow> {
+  // Checkboxes for tracking progress
+  final List<bool> _checked = List.generate(5, (_) => false);
+
+  // Format weight displays in app
   String formattedWeight(double w) => '${w.toStringAsFixed(2)}';
 
   @override
   Widget build(BuildContext context) {
-
     // Calculate the warmup weights
     final warmupWeights = [
-      exercise.weight * 0.4,
-      exercise.weight * 0.5,
-      exercise.weight * 0.6
+      widget.exercise.weight * 0.4,
+      widget.exercise.weight * 0.5,
+      widget.exercise.weight * 0.6
     ];
 
     return Column(
@@ -27,9 +35,9 @@ class ExerciseRow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           Text(exercise.name, style: AppTheme.text.header),
+           Text(widget.exercise.name, style: AppTheme.text.header),
            Pill(
-               text: Text(formattedWeight(exercise.weight), style: AppTheme.text.titleBar),
+               text: Text(formattedWeight(widget.exercise.weight), style: AppTheme.text.titleBar),
                color: AppTheme.colors.primary),
           ],
         ),
@@ -47,6 +55,23 @@ class ExerciseRow extends StatelessWidget {
               ))
               .toList(),
         ),
+        const SizedBox(height: 12),
+
+        // Tracking Row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: List.generate(5, (index) {
+            return Transform.scale(
+              scale: 1.5,
+              child: Checkbox(
+                value: _checked[index],
+                onChanged: (val) { setState(() => _checked[index] = val ?? false); },
+                activeColor: AppTheme.colors.accent,
+                materialTapTargetSize: MaterialTapTargetSize.padded,
+              ),
+            );
+          }),
+        )
       ]
     );
   }
