@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/widgets/exercise_row.dart';
-import 'package:trackrinator/widgets/header.dart';
+import 'package:trackrinator/components/header.dart';
 import 'package:trackrinator/models/workout.dart';
 
 class WorkoutScreen extends StatelessWidget {

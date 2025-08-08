@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/exercise.dart';
+import 'package:trackrinator/components/pill.dart';
 
 class ExerciseRow extends StatelessWidget {
   final Exercise exercise;
 
   const ExerciseRow({Key? key, required this.exercise}) : super(key: key);
 
-  // correctly format the weight display
-  String formatWeight(double w) => '${w.toStringAsFixed(2)} kg';
+  String formattedWeight(double w) => '${w.toStringAsFixed(2)}';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,9 @@ class ExerciseRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
            Text(exercise.name, style: AppTheme.text.header),
-           Text(formatWeight(exercise.weight), style: AppTheme.text.body)
+           Pill(
+               text: Text(formattedWeight(exercise.weight), style: AppTheme.text.titleBar),
+               color: AppTheme.colors.primary),
           ],
         ),
         const SizedBox(height: 8),
@@ -39,10 +41,13 @@ class ExerciseRow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: warmupWeights
-            .map((w) => Text(formatWeight(w)))
-            .toList(),
-        )
-      ],
+              .map((w) => Pill(
+                text: Text(formattedWeight(w), style: const TextStyle(color: Colors.white)),
+                color: AppTheme.colors.secondary,
+              ))
+              .toList(),
+        ),
+      ]
     );
   }
 }

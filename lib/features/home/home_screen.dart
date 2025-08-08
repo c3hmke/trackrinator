@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trackrinator/features/workout/workout_screen.dart';
-import 'package:trackrinator/widgets/header.dart';
+import 'package:trackrinator/components/header.dart';
 import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/workout.dart';
 import 'package:trackrinator/models/exercise.dart';
