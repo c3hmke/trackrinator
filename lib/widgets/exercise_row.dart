@@ -17,7 +17,7 @@ class _ExerciseRowState extends State<ExerciseRow> {
   final List<bool> _checked = List.generate(5, (_) => false);
 
   // Format weight displays in app
-  String formattedWeight(double w) => '${w.toStringAsFixed(2)}';
+  String formattedWeight(double w) => '${w.toStringAsFixed(1)}';
 
   @override
   Widget build(BuildContext context) {

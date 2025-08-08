@@ -46,7 +46,7 @@ class WorkoutCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(e.name, style: AppTheme.text.body),
-                    Text('${e.weight.toStringAsFixed(2)} kg', style: AppTheme.text.body)
+                    Text('${e.weight.toStringAsFixed(1)}', style: AppTheme.text.body)
                   ],
                 )
               )
