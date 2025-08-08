@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trackrinator/features/workout/workout_screen.dart';
 import 'package:trackrinator/widgets/header.dart';
 import 'package:trackrinator/app/theme.dart';
 import 'package:trackrinator/models/workout.dart';
@@ -64,9 +65,13 @@ class HomePage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => print('yay'),
         label: Text('Start Next Workout', style: AppTheme.text.titleBar,),
         backgroundColor: AppTheme.colors.primary,
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (_) => WorkoutScreen(workout: workouts.first)
+          ));
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
