@@ -44,16 +44,23 @@ class _ExerciseRowState extends State<ExerciseRow> {
         const SizedBox(height: 8),
 
         // Warmups Row
-        const Text('Warmup set weights'),
-        const SizedBox(height: 4),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: warmupWeights
-              .map((w) => Pill(
-                text: Text(formattedWeight(w), style: const TextStyle(color: Colors.white)),
-                color: AppTheme.colors.secondary,
-              ))
-              .toList(),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Warmup weights:'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: warmupWeights
+                  .map((w) => Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Pill(
+                      text: Text(formattedWeight(w), style: const TextStyle(color: Colors.white)),
+                      color: AppTheme.colors.secondary,
+                    )
+                  ))
+                  .toList(),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
 
@@ -71,7 +78,9 @@ class _ExerciseRowState extends State<ExerciseRow> {
               ),
             );
           }),
-        )
+        ),
+        const SizedBox(height: 12),
+
       ]
     );
   }
