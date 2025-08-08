@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trackrinator/widgets/exercise_row.dart';
 import 'package:trackrinator/widgets/header.dart';
-import 'package:trackrinator/app/theme.dart';
+import 'package:trackrinator/widgets/exercise_row.dart';
 import 'package:trackrinator/models/workout.dart';
 
 class WorkoutScreen extends StatelessWidget {
@@ -35,18 +36,10 @@ class WorkoutScreen extends StatelessWidget {
             );
           }
 
-          // The exercises go on this row
-          final exercise = workout.exercises[index - 1];
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(exercise.name, style: AppTheme.text.header),
-              Text('${exercise.weight} kg', style: AppTheme.text.body)
-            ],
-          );
+          // Exercise Rows
+          return ExerciseRow(exercise: workout.exercises[index - 1]);
         },
       ),
-
 
     );
   }
